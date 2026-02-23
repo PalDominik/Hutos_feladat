@@ -10,7 +10,7 @@ class Program
         Console.WriteLine("A hűtő tartalma:");
         foreach (var item in tartalom)
         {
-            Console.WriteLine(item);
+            Console.WriteLine(item.ToLower());
         }
     }
 
@@ -28,6 +28,16 @@ class Program
         } while (valasz != "");
     }
 
+    static void Kiszedes()
+    {
+        Console.WriteLine("Milyen ételt akkarsz kivenni?");
+        string valasz = Console.ReadLine();
+        if (tartalom.Contains(valasz))
+        {
+            tartalom.Remove(valasz);
+        }
+    }
+
     static void FaljbaIras()
     {
         
@@ -39,14 +49,25 @@ class Program
         }
         sw.Close();
     }
+
+    static void FaljbaOlvasas()
+    {
+        StreamReader sr = new StreamReader("Tartalom.txt");
+        while (!sr.EndOfStream)
+        {
+            tartalom.Add(sr.ReadLine());
+        }
+        sr.Close();
+    }
     
     static void Main(string[] args)
     {
+
         char valasz;
         do
         {
             Console.WriteLine("|--------------------------------------------------------|");
-            Console.WriteLine("Menu: \n\t1. listázás: \n\t2. Étel berakása a hűtőbe \n\t3. Étel kivétele \n\t4. Hütő takaritása \n\t5. Exportálás \n\t6. Kilépés");
+            Console.WriteLine("Menu: \n\t1. listázás: \n\t2. Étel berakása a hűtőbe \n\t3. Étel kivétele \n\t4. Hütő importálása \n\t5. Hütő exportálás \n\t6. Kilépés");
             valasz = Console.ReadLine()[0];
             switch (valasz)
             {
@@ -60,10 +81,10 @@ class Program
                     
                     break;
                 case '4':
-                    
+                    FaljbaOlvasas();
                     break;
                 case '5':
-                    
+                    FaljbaIras();
                     break;
                 case '6':
                     Console.WriteLine("Viszlát");
