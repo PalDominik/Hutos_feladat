@@ -30,7 +30,14 @@ class Program
 
     static void FaljbaIras()
     {
-        StreamReader sr = new StreamReader("Tartalom.txt");
+        
+        StreamWriter sw = new StreamWriter("Tartalom.txt");
+        foreach (var item in tartalom)
+        {
+            string s = $"{item}\n";
+            sw.Write(s);
+        }
+        sw.Close();
     }
     
     static void Main(string[] args)
