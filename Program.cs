@@ -78,7 +78,7 @@ class Program
                     Feltoltes();
                     break;
                 case '3':
-                    
+                    Kiszedes();
                     break;
                 case '4':
                     FaljbaOlvasas();
